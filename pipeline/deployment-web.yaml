@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  APP_NAME
+  labels:
+    app:  APP_NAME
+spec:
+  selector:
+    matchLabels:
+      app: APP_NAME
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app:  APP_NAME
+    spec:
+      containers:
+      - name:  APP_NAME
+        image:  DOCKER_IMAGE
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 256m
+            memory: 256Mi
+        env:
+        - name: WEB_VOTE_NUMBER
+          value: "01"
+        ports:
+        - containerPort:  80
+          name:  APP_NAME
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: APP_NAME
+spec:
+  selector:
+    app: APP_NAME
+  type: LoadBalancer
+  ports:
+  - name: APP_NAME
+    port: 80
+    targetPort: 80
