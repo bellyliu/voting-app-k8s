@@ -1,5 +1,5 @@
 resource "alicloud_cs_managed_kubernetes" "k8s" {
-  version               = "1.16.9-aliyun.1"
+  version               = "1.18.8-aliyun.1"
   name                  = "demo-niagahosting"
   security_group_id     = alicloud_security_group.sec_group.id
   cluster_spec          = "ack.standard"
