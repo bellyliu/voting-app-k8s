@@ -10,26 +10,4 @@ variable region {
 variable zone {
   default     = "ap-southeast-5a"
 }
-variable "cluster_addons" {
-  description = "Addon components in kubernetes cluster"
-
-  type = list(object({
-    name      = string
-    config    = string
-    disabled  = bool
-  }))
-
-  default = [
-    {
-      "name"     = "flannel",
-      "config"   = "",
-      "disabled" = false
-    },
-    {
-      "name"     = "flexvolume",
-      "config"   = "",
-      "disabled" = false
-    }
-  ]
-}
 
