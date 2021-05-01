@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name:  APP_NAME
-        image:  DOCKER_IMAGE
+        image:  REGISTRY/SERVICE_NAME:IMAGE_VERSION
         resources:
           requests:
             cpu: 100m
